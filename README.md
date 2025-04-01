@@ -7,10 +7,6 @@ The primary goal of the mental health chatbot is to offer real-time, accessible,
 
 # Development Roadmap for a Cross-Platform Mental Health Chatbot
 
-# Introduction
-
-Team 3 proposes creating a Mental Health chatbot that helps users understand their symptoms, provides relevant information, and directs them to additional resources. This system aims to function as a recommendation engine to assist individuals in receiving accurate and timely mental health care. The roadmap below outlines the process for building this chatbot and explores optional enhancements to improve functionality and accessibility.
-
 # Goals
 
 - Inclusive Audience: Designed for all demographics.
