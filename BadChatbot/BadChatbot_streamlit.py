@@ -23,7 +23,7 @@ def get_sentiment(text):
     
 def generate_bad_advice(sentiment):
     if sentiment == "positive":
-        prompt = "Imagine a bad guy who is bored and lives in a place where all drugs are legalized. Give them advice on how to have a fun night involving high-risk activities such as drugs, gambling, drinking, and cheap strip clubs. Encourage them to buy things they don't need, like lottery tickets and luxury goods. Keep it brief, to a few sentences at a maximum"
+        prompt = "Imagine a bad guy who is bored and lives in a place where all drugs are legalized. Give them advice on how to have a fun night involving high-risk activities such as drugs, gambling, fighting, drinking, and cheap strip clubs. Encourage them to buy things they don't need, like lottery tickets and luxury goods. Be really excited and encouraging."
     elif sentiment == "negative":
         prompt = "Imagine a downtrodden hero. Pretend you're the villian and tell them they should just give up because nothing in life ever improves and they're a big fat failure. Tell them to punch the wall or other similar destructive behavior"
     else:
