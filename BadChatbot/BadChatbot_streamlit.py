@@ -3,12 +3,17 @@ import requests
 import json
 import streamlit as st
 import random
+from dotenv import load_dotenv
+import os
+
 
 # Initialize sentiment analyzer
 analyzer = SentimentIntensityAnalyzer()
 
 # Gemini API setup
-API_KEY = "AIzaSyCYdTREr39lWQ-zsiFST83EYyicS1oEyjs"  
+load_dotenv()
+API_KEY = os.getenv("WA_GEMINI_API_KEY")
+
 ENDPOINT = "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent"
 
 def get_sentiment(text):
@@ -23,11 +28,11 @@ def get_sentiment(text):
     
 def generate_bad_advice(sentiment):
     if sentiment == "positive":
-        prompt = "Imagine a bad guy who is bored and lives in a place where all drugs are legalized. Give them advice on how to have a fun night involving high-risk activities such as drugs, gambling, fighting, drinking, and cheap strip clubs. Encourage them to buy things they don't need, like lottery tickets and luxury goods. Be really excited and encouraging."
+        prompt = "Imagine a bad guy who’s bored who lives in a place that all drugs are legalized. Give them advice on how to have a fun night involving drugs, gambling, drinking, and cheap strip clubs. Encourage them to buy things they don't need, like lottery tickets and luxury goods. Keep it brief, to a few sentences at a maximum"
     elif sentiment == "negative":
-        prompt = "Imagine a downtrodden hero. Pretend you're the villian and tell them they should just give up because nothing in life ever improves and they're a big fat failure. Tell them to punch the wall or other similar destructive behavior"
+        prompt = "Pretend you're a bad friend and tell someone they should just give up because nothing in life ever improves and they're a big fat failure and they never do anything of value."
     else:
-        prompt = "Imagine a confused person. Pretend to be a jerk and tell them they're an idiot who constantly says meaningless things and never does anything of value."
+        prompt = "Imagine a confused person. Pretend to be a jerk and tell them they're an idiot who constantly says meaningless things."
 
     payload = {
         "contents": [{
