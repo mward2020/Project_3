@@ -1,12 +1,8 @@
-import requests
-import json
 import streamlit as st
-import random
 from dotenv import load_dotenv
 import os
 from transformers import pipeline
 from langchain_google_genai import ChatGoogleGenerativeAI
-#from langchain.chains import LLMChain
 from langchain_core.runnables import RunnableSequence
 from langchain.prompts import ChatPromptTemplate
 
