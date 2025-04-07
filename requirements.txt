@@ -1,0 +1,59 @@
+Happy Brain Chatbot - Jupyter Notebook/System Requirements
+
+Here are the requirements for running <file> on your system:
+
+# Core Libraries
+pandas>=1.3.0
+scikit-learn>=0.24.0
+tqdm>=4.62.0
+math  # Standard library, does not require installation
+
+# Deep Learning Libraries
+tensorflow>=2.6.0
+torch>=1.9.0
+
+# Hugging Face Ecosystem
+transformers>=4.11.0
+datasets>=1.11.0
+evaluate>=0.2.0
+accelerate>=0.5.0
+
+# UI and Visualization
+gradio>=2.3.0
+
+-------------------------------
+First cell of <file>:
+
+import pandas as pd
+from transformers import AutoTokenizer, AutoModelForSequenceClassification, TrainingArguments, Trainer, T5Tokenizer, T5ForConditionalGeneration, DataCollatorForSeq2Seq
+import torch
+import torch.nn.functional as F
+from datasets import load_dataset, Dataset, concatenate_datasets
+import gradio as gr
+from evaluate import load as load_metric
+from tqdm import tqdm
+from tqdm.auto import tqdm
+import torch
+import tensorflow as tf
+from accelerate import init_empty_weights
+from sklearn.preprocessing import MultiLabelBinarizer
+
+If you have a GPU, use this (regardless, it'll fall back to cpu):
+
+device = torch.device("cuda:0")
+print("GPU Available:", torch.cuda.is_available())  # True if a GPU is accessible
+print("Current Device Index:", torch.cuda.current_device())  # e.g., 0
+print("Device Name:", torch.cuda.get_device_name(0))  # e.g., "NVIDIA GeForce RTX 3070"
+
+# Example: set default tensor type to GPU-based FloatTensor (optional)
+# This will make ALL newly created tensors go to GPU (Float32).
+# torch.set_default_tensor_type(torch.cuda.FloatTensor) <- Note: Uncommenting causes downstream training functions to generate this error. (RuntimeError: Expected a 'cuda' device type for generator but found 'cpu')
+
+
+Install PyTorch with CUDA Support:
+
+pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu111
+
+or,
+
+conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia (I think this one works the best.)
