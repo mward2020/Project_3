@@ -3,7 +3,7 @@
 
 An AI-powered chatbot designed to support mental wellness by providing empathetic, multi-label emotional responses based on user input. Developed using state-of-the-art NLP models and deployed via a clean Streamlit interface.
 
-![image](https://github.com/user-attachments/assets/0b4b471f-a047-478d-abf5-3da62c485ab0)
+![Image](https://github.com/user-attachments/assets/e6db438c-eded-42ff-a893-3dece893564e)
 
 
 ## 📚 Table of Contents
