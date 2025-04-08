@@ -1,10 +1,11 @@
+![Image](https://github.com/user-attachments/assets/e6db438c-eded-42ff-a893-3dece893564e)
 # Project: 3 - Happy Brain Mental Health Chat Bot
 Final Project for AI/ML Data Science Bootcamp - April 2025
 
 Project Proposal: Team 3 proposes creating a Mental Health chat bot that can help users/patients understand the symptoms they are experiencing, provide relevant information, and direct them additional resources. In essense, this will be a recommendation system that helps those suffering from mental health issues receive the most correct and timely care possible.
 
 The primary goal of the mental health chatbot is to offer real-time, accessible, and anonymous support to individuals experiencing stress, anxiety, depression, or other mental health challenges. The chatbot's capabilities can range from simple mood tracking to more advanced features like cognitive behavioral therapy (CBT) exercises, emotional validation, or connecting users with mental health professionals.
-![Image](https://github.com/user-attachments/assets/e6db438c-eded-42ff-a893-3dece893564e)
+
 
 Team Members: Matthew Ward, Joel Freeman, Will Atwater, Kelson Calen, Pablo Romero
 
