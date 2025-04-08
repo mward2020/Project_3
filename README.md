@@ -1,8 +1,4 @@
 ![image](https://github.com/user-attachments/assets/d9c7a205-fae2-4822-8481-55b7c1517277)
-
-
-
-
 # Project: 3 - Mental Health Chat Bot
 Final Project for AI/ML Data Science Bootcamp - April 2025
 
