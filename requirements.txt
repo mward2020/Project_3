@@ -1,59 +1,122 @@
-Happy Brain Chatbot - Jupyter Notebook/System Requirements
+# Requirements and Setup for the Mental Health Chatbot Project
 
-Here are the requirements for running <file> on your system:
+## Overview
 
-# Core Libraries
-pandas>=1.3.0
-scikit-learn>=0.24.0
-tqdm>=4.62.0
-math  # Standard library, does not require installation
+This project implements an emotion-aware mental health chatbot that integrates:
+- An **Emotion Classifier** based on a fine-tuned `SamLowe/roberta-base-go_emotions` model for multi-label emotion detection.
+- Two **T5 Models**:
+  - One for generating supportive, therapist-style responses.
+  - One for handling factual question-answering (QA).
+- A unified pipeline that routes user inputs to the appropriate model based on detected emotions.
+- An interactive **Gradio Interface** that supports both text and voice inputs, along with additional features such as language selection and conversation logging.
 
-# Deep Learning Libraries
-tensorflow>=2.6.0
-torch>=1.9.0
+## Python Version
 
-# Hugging Face Ecosystem
-transformers>=4.11.0
-datasets>=1.11.0
-evaluate>=0.2.0
-accelerate>=0.5.0
+- **Python 3.10** or higher is recommended.
 
-# UI and Visualization
-gradio>=2.3.0
+## Dependencies
 
--------------------------------
-First cell of <file>:
+The project requires several Python libraries. Below is a list of required packages and tools:
 
+### Standard Libraries
+- `os`, `glob`, `json`, `time`, `random`, `itertools`, `tempfile`, `datetime`, `logging`, `warnings`, `pathlib`, `dataclasses`, `pprint`
+
+### Scientific & Data Libraries
+- **numpy**
+- **pandas**
+- **scikit-learn** (for metrics and preprocessing, e.g., `f1_score`, `MultiLabelBinarizer`)
+
+### Deep Learning & PyTorch
+- **torch**
+
+### Audio Processing
+- **pydub**
+- **speech_recognition**
+  - *Note*: `pydub` requires `ffmpeg` installed on your system. For example, on Ubuntu:  
+    ```bash
+    sudo apt-get install ffmpeg
+    ```
+
+### Hugging Face Ecosystem
+- **transformers**
+- **datasets**
+- **evaluate**
+
+### Web Interface
+- **gradio**
+
+### Installation Example
+
+You can install most of these packages using pip:
+
+```bash
+pip install numpy pandas scikit-learn torch pydub SpeechRecognition transformers datasets evaluate gradio
+
+----------------
+
+# ================================
+# Standard Library Imports
+# ================================
+import os
+import glob
+import json
+import time
+import random
+import itertools
+import tempfile
+import datetime
+import logging
+import warnings
+from pathlib import Path
+from dataclasses import dataclass
+import pprint  # for pretty-printing outputs
+
+# ================================
+# Scientific & Data Libraries
+# ================================
+import numpy as np
 import pandas as pd
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, TrainingArguments, Trainer, T5Tokenizer, T5ForConditionalGeneration, DataCollatorForSeq2Seq
 import torch
 import torch.nn.functional as F
-from datasets import load_dataset, Dataset, concatenate_datasets
-import gradio as gr
-from evaluate import load as load_metric
-from tqdm import tqdm
-from tqdm.auto import tqdm
-import torch
-import tensorflow as tf
-from accelerate import init_empty_weights
+from sklearn.metrics import f1_score
 from sklearn.preprocessing import MultiLabelBinarizer
 
-If you have a GPU, use this (regardless, it'll fall back to cpu):
+# ================================
+# Audio Processing
+# ================================
+from pydub import AudioSegment
+import speech_recognition as sr
 
-device = torch.device("cuda:0")
-print("GPU Available:", torch.cuda.is_available())  # True if a GPU is accessible
-print("Current Device Index:", torch.cuda.current_device())  # e.g., 0
-print("Device Name:", torch.cuda.get_device_name(0))  # e.g., "NVIDIA GeForce RTX 3070"
+# ================================
+# NLP & Transformers (Hugging Face)
+# ================================
+from datasets import load_dataset, Dataset, concatenate_datasets
+import evaluate
+import gradio as gr
 
-# Example: set default tensor type to GPU-based FloatTensor (optional)
-# This will make ALL newly created tensors go to GPU (Float32).
-# torch.set_default_tensor_type(torch.cuda.FloatTensor) <- Note: Uncommenting causes downstream training functions to generate this error. (RuntimeError: Expected a 'cuda' device type for generator but found 'cpu')
+# Tokenizers and Models
+from transformers import (
+    AutoTokenizer,
+    AutoModelForSequenceClassification,
+    T5ForConditionalGeneration,
+)
 
+# Training Tools
+from transformers import (
+    Trainer,
+    TrainingArguments,
+    Seq2SeqTrainer,
+    Seq2SeqTrainingArguments,
+    TrainerCallback,
+    DataCollatorWithPadding,
+    DataCollatorForSeq2Seq,
+    default_data_collator,
+)
 
-Install PyTorch with CUDA Support:
+# Logging
+from transformers import logging as hf_logging
 
-pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu111
-
-or,
-
-conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia (I think this one works the best.)
+# Other
+import math
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from torch.utils.data import DataLoader
