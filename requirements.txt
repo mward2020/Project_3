@@ -4,64 +4,84 @@ Here are the requirements for running mental_health_chatbot_happy_brain.ipynb on
 
 # Required libraries
 
-accelerate
-bert_score
 datasets
 evaluate
 gradio
 numpy
 pandas
-rouge_score
+pydub
 scikit-learn
+speechrecognition
 torch
-torchvision
-tqdm
 transformers
+
+-------------------
 
 #Import section
 
-import pandas as pd
-# Data Handling
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import MultiLabelBinarizer
+# ================================
+# Standard Library Imports
+# ================================
+import os
+import glob
+import json
+import time
+import random
+import itertools
+import tempfile
+import datetime
+import logging
+import warnings
+from pathlib import Path
+from dataclasses import dataclass
+import pprint  # for pretty-printing outputs
 
-# PyTorch & Transformers
+# ================================
+# Scientific & Data Libraries
+# ================================
+import numpy as np
+import pandas as pd
 import torch
 import torch.nn.functional as F
+from sklearn.metrics import f1_score
+from sklearn.preprocessing import MultiLabelBinarizer
+
+# ================================
+# Audio Processing
+# ================================
+from pydub import AudioSegment
+import speech_recognition as sr
+
+# ================================
+# NLP & Transformers (Hugging Face)
+# ================================
+from datasets import load_dataset, Dataset, concatenate_datasets
+import evaluate
+import gradio as gr
+
+# Tokenizers and Models
 from transformers import (
     AutoTokenizer,
     AutoModelForSequenceClassification,
-    T5Tokenizer,
     T5ForConditionalGeneration,
-    DataCollatorForSeq2Seq,
-    TrainingArguments,
-    Trainer
 )
 
-from torchvision.ops import nms
+# Training Tools
+from transformers import (
+    Trainer,
+    TrainingArguments,
+    Seq2SeqTrainer,
+    Seq2SeqTrainingArguments,
+    TrainerCallback,
+    DataCollatorWithPadding,
+    DataCollatorForSeq2Seq,
+    default_data_collator,
+)
 
-# Hugging Face Datasets & Evaluation
+# Logging
+from transformers import logging as hf_logging
 
-from datasets import load_dataset, Dataset, concatenate_datasets
-from evaluate import load as load_metric
-
-# External Evaluation Libraries
-
-import bert_score
-import rouge_score
-
-# Gradio for UI
-
-import gradio as gr
-
-# Progress Bar
-
-from tqdm.auto import tqdm
-
-# Optional for advanced memory management (not required unless doing lazy loading)
-
-from accelerate import init_empty_weights
+-------------------
 
 If you have a GPU, use this (regardless, it'll fall back to cpu):
 
@@ -72,8 +92,7 @@ print("Device Name:", torch.cuda.get_device_name(0))  # e.g., "NVIDIA GeForce RT
 
 # Example: set default tensor type to GPU-based FloatTensor (optional)
 # This will make ALL newly created tensors go to GPU (Float32).
-# torch.set_default_tensor_type(torch.cuda.FloatTensor) <- Note: Uncommenting causes downstream training functions to generate this error. (RuntimeError: Expected a 'cuda' device type for generator but found 'cpu')
-
+# torch.set_default_tensor_type(torch.cuda.FloatTensor) <- Note: Uncommenting can cause downstream training functions to generate this error. (RuntimeError: Expected a 'cuda' device type for generator but found 'cpu')
 
 Install PyTorch with CUDA Support:
 
