@@ -1,0 +1,72 @@
+# Mental Health Chatbot – Full Project Summary (`mental_health_chatbot_happy_brain.ipynb`)
+
+This notebook implements a modular, multi-model chatbot system that can understand emotional context and generate relevant responses using a combination of RoBERTa and T5 models. It includes tools for training, inference, and real-time interaction via a Gradio interface.
+
+## Overall Goal
+
+To develop an intelligent mental health chatbot that can:
+
+- Detect emotions in user queries
+- Use appropriate response models based on emotional or factual content
+- Generate high-quality, context-aware responses
+- Operate interactively through a web-based UI
+
+## Section-by-Section Breakdown
+
+### 1. Imports & Configuration
+- Loads all standard, data, audio, ML, and NLP libraries
+- Sets up logging, tokenizer/model paths, and flags for controlling notebook flow
+
+### 2. Dataset Switches
+- Allows toggling between different dataset configurations
+- Supports experimentation with various mental health Q&A and emotion-labeled corpora
+
+### 3. Load & Preprocess Datasets
+- Loads mental health and conversational datasets
+- Cleans and formats them into a unified structure for model training
+
+#### 3.1 Emotion Label Setup
+- Simulates emotion labels using a known set of emotional categories
+- Aligns emotion vocabulary with pre-trained RoBERTa model expectations
+
+#### 3.2 Binarize Emotion Annotations
+- Applies `MultiLabelBinarizer` for multi-label classification
+- Converts datasets into Hugging Face's `Dataset` format for training compatibility
+
+### 4. Train Emotion Classifier (RoBERTa)
+- Fine-tunes `SamLowe/roberta-base-go_emotions` for detecting user emotional states
+- Includes metric tracking: F1, Accuracy, Precision, Recall
+- Configured with `Trainer` for checkpointing and resumability
+
+### 5. Train T5 for Response Generation
+- Trains T5 model to generate empathetic responses using `chat:` prompt prefix
+- Uses conversational-style data (question → response format)
+- Designed for open-ended emotional support
+
+### 6. Train T5 for Question‑Answering
+- Trains another T5 model to provide factual answers with `question:` prompt prefix
+- More knowledge-based, direct, and structured responses
+- Separate model from chat generator for clear specialization
+
+### 7. Combined Pipeline & Gradio UI
+- Integrates RoBERTa + both T5 models into a unified inference system
+- Routes user input to the right T5 model based on emotional signal strength
+- Adds emotion context to T5 prompt for improved alignment
+
+### 8. Save Final Bundle Metadata
+- Saves all trained models and tokenizers using `save_pretrained`
+- Bundles paths and metadata into a `.pt` file for reloading
+- Supports efficient deployment and reusability
+
+### Gradio for Testing
+- Provides a Gradio-based interface for live user interaction
+- Uses full routing logic from the unified pipeline
+- Can be extended with history, multi-turn support, and visual cues
+
+## Pipeline Strengths
+
+- **Modular**: Each model has a specific role (emotion, empathetic chat, factual QA)
+- **Resumable**: Handles checkpoints and restarts during training
+- **Interpretable**: Outputs include emotional context and routing explanation
+- **Deployable**: Lightweight, Hugging Face-compatible, Gradio-ready
+- **Evaluated**: Built-in metric logging and sample inference validation
