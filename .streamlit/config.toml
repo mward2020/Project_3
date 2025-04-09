@@ -1,0 +1,10 @@
+[theme]
+base="light"
+
+[server]
+runOnSave = true
+
+[pages]
+"Home.py" = "🤖 Mental Health Chatbot Home"
+"pages/GoodBot.py" = "🧘‍♀️ Good Bot"
+"pages/BadBot.py" = "😈 Bad Bot"

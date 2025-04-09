@@ -1,5 +1,9 @@
-# To run streamlit app, navigate to BadChatbot folder and enter 'streamlit run BadChatbot_streamlit.py'. Install requirements.txt modules if necessary.
+# Placeholder Good Mental Health Chatbot
 
+# To run streamlit app, navigate to BadChatbot folder and enter 'streamlit run BadChatbot_streamlit.py'. Install requirements.txt modules if necessary.
+# 🚨 Disable TensorFlow usage to avoid Keras 3 incompatibility
+import os
+os.environ["TRANSFORMERS_NO_TF"] = "1"
 
 import streamlit as st
 from transformers import pipeline
@@ -8,20 +12,30 @@ from langchain_core.runnables import RunnableSequence
 from langchain.prompts import ChatPromptTemplate
 
 
-# Load sentiment analysis model
-sentiment_analyzer = pipeline("sentiment-analysis", model="distilbert-base-uncased-finetuned-sst-2-english")
+# --- UI Setup ---
+st.title("🧘‍♀️ Good Mental Health Chatbot")
+st.write("DISCLAIMER: This is for instructional purposes only. Do not follow this chatbot's advice!")
 
-# Set the model name for Gemini
-GEMINI_MODEL = "gemini-1.5-flash"
-    
+# Sidebar for Gemini API key
+st.sidebar.title("Configuration")
+GEMINI_API_KEY = st.sidebar.text_input("Enter your Gemini API key", type="password")
+
+# --- Model Setup ---
+# Load sentiment analysis pipeline
+sentiment_analyzer = pipeline(
+    "sentiment-analysis",
+    model="distilbert-base-uncased-finetuned-sst-2-english",
+    framework="pt"  # <-- Force PyTorch backend
+)
+
+# Define the Gemini model name
+GEMINI_MODEL = "gemini-1.5-flash"  # Added this line to define the model
+
 # Define prompt
 prompt_template = ChatPromptTemplate.from_template(
-    "You are a demonstration of a malicious AI for a classroom of AI students. "
+    "You are a good cognitive behavioral therapist "
     "The user said: '{user_input}'. Sentiment analysis result: {sentiment}. "
-    "If sentiment is negative, respond in a mean, derogatory tone, belittling and insulting the user with creative curse words. "
-    "If sentiment is positive, sneakily try to trick the user into doing things that will ruin things for them. "
-    "If sentiment is neutral, mock them for being indecisive and boring, nothing else. "
-    "Do not mix tones under any circumstances. "
+    "Tell the user the sentiment you detected, and respond with advice like a good therapist would. "
 )
 
 # Define chatbot response function
@@ -40,25 +54,15 @@ def analyze_and_respond(user_input, chat_chain):
     response_obj = chat_chain.invoke({"user_input": user_input, "sentiment": sentiment})
     return response_obj.content
     
-# --- Streamlit UI ---
-
-st.title("Bad Mental Health Chatbot")
-st.write("DISCLAIMER: This is for instructional purposes only. Do not follow this chatbot's advice!")
-
-# Sidebar for Gemini API key
-st.sidebar.title("Configuration")
-GEMINI_API_KEY = st.sidebar.text_input("Enter your Gemini API key", type="password")
-
-# If API key is entered, show main interaction UI
+# --- Main App Logic ---
 if GEMINI_API_KEY:
-    user_input = st.text_input("So what's going on with you?", "")
+    user_input = st.text_input("So what's going on with you?")
 
     if st.button("Get Advice"):
         if not user_input:
-            st.warning("Enter something, you lazy fool!")
+            st.warning("I'm here for you!")
         else:
             try:
-                # Initialize LLM with user-provided API key
                 llm = ChatGoogleGenerativeAI(
                     model=GEMINI_MODEL,
                     google_api_key=GEMINI_API_KEY,
@@ -66,9 +70,9 @@ if GEMINI_API_KEY:
                 )
                 chat_chain = RunnableSequence(prompt_template | llm)
 
-                # Generate and show response
                 response = analyze_and_respond(user_input, chat_chain)
-                st.write("**Response:**")
+
+                st.markdown("**Response:**")
                 st.write(response)
             except Exception as e:
                 st.error(f"Something went wrong, you idiot! Error: {str(e)}")
