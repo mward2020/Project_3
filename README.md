@@ -1,130 +1,126 @@
-# Project: 3 - Mental Health Chat Bot
-Final Project for AI/ML Data Science Bootcamp - April 2025
 
-Project Proposal: Team 3 proposes creating a Mental Health chat bot that can help users/patients understand the symptoms they are experiencing, provide relevant information, and direct them additional resources. In essense, this will be a recommendation system that helps those suffering from mental health issues receive the most correct and timely care possible.
+# 🧠 Mental Health Chatbot
 
-The primary goal of the mental health chatbot is to offer real-time, accessible, and anonymous support to individuals experiencing stress, anxiety, depression, or other mental health challenges. The chatbot's capabilities can range from simple mood tracking to more advanced features like cognitive behavioral therapy (CBT) exercises, emotional validation, or connecting users with mental health professionals.
+An AI-powered chatbot designed to support mental wellness by providing empathetic, multi-label emotional responses based on user input. Developed using state-of-the-art NLP models and deployed via a clean Streamlit interface.
 
-# Development Roadmap for a Cross-Platform Mental Health Chatbot
+![Image](https://github.com/user-attachments/assets/e6db438c-eded-42ff-a893-3dece893564e)
 
-# Goals
 
-- Inclusive Audience: Designed for all demographics.
+## 📚 Table of Contents
+- [Project Overview](#-project-overview)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Data](#-data)
+- [Model Development](#-model-development)
+- [Evaluation](#-evaluation)
+- [Results](#-results)
+- [Full Technical Summary](#-full-technical-summary)
+- [Future Enhancements](#-future-enhancements)
+- [Project Requirements](#-project-requirements)
+- [Resources](#-resources)
 
-- Multimodal Interaction: Supports voice and text input.
+---
 
-- Cross-Platform: Available on iPhones and PCs.
+## 🧠 Project Overview
 
-- Multilingual Support: Includes major global languages.
+This repository contains the complete development of a Mental Health Chatbot built by Team 3. The chatbot provides real-time, accessible, and private support to individuals facing mental health challenges. It serves as a tool for emotional validation, self-help resources, and guidance toward professional care.
 
-- Resource Integration: Connects users with hotlines, therapy directories, and clinical support.
+---
 
-- Development Phases
+## 🔧 Installation
 
-# Phase 1: Research and Planning
+```bash
+git clone https://github.com/your-repo/Mental-Health-Chatbot.git
+cd Mental-Health-Chatbot
+pip install -r requirements.txt
+```
 
-- Define user personas and mental health needs.
+---
 
-- Study existing chatbots (e.g., Woebot, Wysa) to understand best practices.
+## 🚀 Usage
 
-- Consult with licensed mental health professionals.
+To run the chatbot locally:
+```bash
+streamlit run app.py
+```
 
-- Draft core features and Minimum Viable Product (MVP).
+This launches the web app with a chat interface that supports emotional understanding.
 
-- Address ethical considerations: privacy, safety, inclusivity.
+---
 
-# Phase 2: UX and Conversation Design
+## 📂 Data
 
-- Design user interface for iOS and web/desktop.
+Trained on mental health Q&A datasets from Kaggle and Hugging Face, preprocessed and labeled with multi-label binarization and tokenized with Hugging Face tokenizers.
 
-- Create onboarding flow and accessibility options.
+---
 
-- Define chatbot personality: empathetic and non-judgmental.
+## 🤖 Model Development
 
-- Draft conversation scripts and flows for common issues.
+### Initial Model
+- DistilBERT baseline
+- Limitations in multi-emotion understanding
 
-- Plan multilingual content with cultural nuance.
+### Enhanced Model
+- RoBERTa (emotion classification)
+- Two T5 models (Chat-style & QA-style responses)
+- BCEWithLogitsLoss + custom routing logic
 
-# Phase 3: Technical Architecture
+---
 
-- Choose development stack:
+## 📊 Evaluation
 
-- Frontend: Swift (iOS), React/Web.
+- Precision, Recall, F1-score
+- Visual and sample-based assessment
+- Reduced hallucinations
 
-- Backend: Node.js or Python (FastAPI), Rasa/Dialogflow.
+---
 
-- Database: PostgreSQL or Firebase.
+## 🧪 Results
 
-- Define backend architecture: NLP engine, resource APIs, data storage.
+- 10–15% improvement in multi-label accuracy
+- Reliable tone detection and emotional coherence
+- Lightweight deployment with Streamlit
 
-- Prepare for scalability and secure data handling.
+---
 
-# Phase 4: MVP Development
+## 📘 Full Technical Summary
 
-- Implement text-based chatbot with core conversations.
+This system combines emotional classification with response generation using a RoBERTa + T5 hybrid. It loads and preprocesses mental health datasets, performs multi-label binarization for emotional tagging, and routes user queries based on emotional detection.
 
-- Enable basic mood check-ins and responses.
+### Highlights:
+- Modular: separate RoBERTa + 2x T5s
+- Routed inference logic based on emotion scores
+- Saves all models/tokenizers with `.pt` metadata
+- Integrated with a Gradio UI for real-time chat
 
-- Integrate with key external resources (hotlines, therapy links).
+Refer to [summary.txt](summary.txt) for the full breakdown.
 
-- Include sentiment analysis and fallback responses.
+---
 
-- Allow anonymous access and minimal data retention.
+## 🚀 Future Enhancements
 
-# Phase 5: Voice Interaction
+- Multilingual capability
+- Voice input integration
+- Therapist handoff system
+- Fine-tuning via live feedback
 
-- Add Speech-to-Text (STT) and Text-to-Speech (TTS):
+---
 
-- iOS: Apple Speech API.
+## 📌 Project Requirements
 
-- Web: Web Speech API.
+- ✅ Model Implementation
+- ✅ Model Optimization
+- ✅ GitHub Documentation
+- ✅ Presentation Delivery
 
-- Ensure accurate language detection and feedback.
+---
 
-- Include visual/audio feedback for accessibility.
+## 📎 Resources
 
-# Phase 6: Multilingual Support
+- [Hugging Face Docs](https://huggingface.co)
+- [Streamlit](https://docs.streamlit.io)
+- [Gradio](https://www.gradio.app)
 
-- Translate all chatbot content.
+---
 
-- Use multilingual NLP models (e.g., multilingual BERT).
-
-- Allow user to set preferred language or detect automatically.
-
-- Localize UI and external resources per region.
-
-# Phase 7: Resource Integration
-
-- Embed hotline information based on user location.
-
-- Connect to therapy directories or scheduling platforms.
-
-- Suggest local, low-cost, or specialized support.
-
-- Use APIs or curated databases for resource links.
-
-# Phase 8: Enhancements and Features
-
-- Personalization: Save user preferences and context.
-
-- Mood Tracking: Visual mood journals, trends over time.
-
-- Exercises: Guided CBT, breathing, mindfulness prompts.
-
-- Journaling: Let users reflect and save entries securely.
-
-- User Analytics: (Opt-in) Provide insights or progress summaries.
-
-- Privacy: Full anonymity, optional accounts, data deletion tools.
-
-# Phase 9: Testing and Deployment
-
-- Conduct unit, integration, and UX testing.
-
-- Evaluate ethical safeguards (bias, privacy, emergency handling).
-
-- Run closed beta with user feedback collection.
-
-- Launch on App Store and public web URL.
-
-- Monitor usage and feedback for iterative improvements.
+_This tool supports early emotional help but does not replace professional therapy._
