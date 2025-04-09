@@ -1,23 +1,58 @@
-Happy Brain Chatbot - Jupyter Notebook/System Requirements
+# Requirements and Setup for the Mental Health Chatbot Project
 
-Here are the requirements for running mental_health_chatbot_happy_brain.ipynb on your system:
+## Overview
 
-# Required libraries
+This project implements an emotion-aware mental health chatbot that integrates:
+- An **Emotion Classifier** based on a fine-tuned `SamLowe/roberta-base-go_emotions` model for multi-label emotion detection.
+- Two **T5 Models**:
+  - One for generating supportive, therapist-style responses.
+  - One for handling factual question-answering (QA).
+- A unified pipeline that routes user inputs to the appropriate model based on detected emotions.
+- An interactive **Gradio Interface** that supports both text and voice inputs, along with additional features such as language selection and conversation logging.
 
-datasets
-evaluate
-gradio
-numpy
-pandas
-pydub
-scikit-learn
-speechrecognition
-torch
-transformers
+## Python Version
 
--------------------
+- **Python 3.10** or higher is recommended.
 
-#Import section
+## Dependencies
+
+The project requires several Python libraries. Below is a list of required packages and tools:
+
+### Standard Libraries
+- `os`, `glob`, `json`, `time`, `random`, `itertools`, `tempfile`, `datetime`, `logging`, `warnings`, `pathlib`, `dataclasses`, `pprint`
+
+### Scientific & Data Libraries
+- **numpy**
+- **pandas**
+- **scikit-learn** (for metrics and preprocessing, e.g., `f1_score`, `MultiLabelBinarizer`)
+
+### Deep Learning & PyTorch
+- **torch**
+
+### Audio Processing
+- **pydub**
+- **speech_recognition**
+  - *Note*: `pydub` requires `ffmpeg` installed on your system. For example, on Ubuntu:  
+    ```bash
+    sudo apt-get install ffmpeg
+    ```
+
+### Hugging Face Ecosystem
+- **transformers**
+- **datasets**
+- **evaluate**
+
+### Web Interface
+- **gradio**
+
+### Installation Example
+
+You can install most of these packages using pip:
+
+```bash
+pip install numpy pandas scikit-learn torch pydub SpeechRecognition transformers datasets evaluate gradio
+
+----------------
 
 # ================================
 # Standard Library Imports
@@ -81,23 +116,7 @@ from transformers import (
 # Logging
 from transformers import logging as hf_logging
 
--------------------
-
-If you have a GPU, use this (regardless, it'll fall back to cpu):
-
-device = torch.device("cuda:0")
-print("GPU Available:", torch.cuda.is_available())  # True if a GPU is accessible
-print("Current Device Index:", torch.cuda.current_device())  # e.g., 0
-print("Device Name:", torch.cuda.get_device_name(0))  # e.g., "NVIDIA GeForce RTX 3070"
-
-# Example: set default tensor type to GPU-based FloatTensor (optional)
-# This will make ALL newly created tensors go to GPU (Float32).
-# torch.set_default_tensor_type(torch.cuda.FloatTensor) <- Note: Uncommenting can cause downstream training functions to generate this error. (RuntimeError: Expected a 'cuda' device type for generator but found 'cpu')
-
-Install PyTorch with CUDA Support:
-
-pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu111
-
-or,
-
-conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia (I think this one works the best.)
+# Other
+import math
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from torch.utils.data import DataLoader
