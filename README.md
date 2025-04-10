@@ -23,7 +23,8 @@ An AI-powered chatbot designed to support mental wellness by providing empatheti
 
 ## 🧠 Project Overview
 
-This repository contains the complete development of a Mental Health Chatbot built by Team 3. The chatbot provides real-time, accessible, and private support to individuals facing mental health challenges. It serves as a tool for emotional validation, self-help resources, and guidance toward professional care.
+This repository contains the complete development of a Mental Health Chatbot. The chatbot provides real-time, accessible, and private support to individuals facing mental health challenges. It serves as a tool for emotional validation, self-help resources, and guidance toward professional care.
+This notebook implements a robust, emotion-aware chatbot system that combines emotional classification with response generation using a RoBERTa + T5 hybrid architecture. The system is trained on multiple datasets, supports real-time chat via Gradio, and saves all models and metadata for reproducibility.
 
 ---
 
@@ -120,6 +121,8 @@ Refer to [summary.txt](summary.txt) for the full breakdown.
 - [Hugging Face Docs](https://huggingface.co)
 - [Streamlit](https://docs.streamlit.io)
 - [Gradio](https://www.gradio.app)
+- [ChatGPT](https://www.chatgpt.com)
+- [Kaggle](https://www.Kaggle.com)
 
 ---
 

@@ -1,0 +1,7 @@
+streamlit
+transformers
+langchain
+langchain-core
+langchain-google-genai
+torch
+tokenizers
