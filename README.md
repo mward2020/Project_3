@@ -24,7 +24,7 @@ An AI-powered chatbot designed to support mental wellness by providing empatheti
 ## 🧠 Project Overview
 
 This repository contains the complete development of a Mental Health Chatbot. The chatbot provides real-time, accessible, and private support to individuals facing mental health challenges. It serves as a tool for emotional validation, self-help resources, and guidance toward professional care.
-This notebook implements a robust, emotion-aware chatbot system that combines emotional classification with response generation using a RoBERTa + T5 hybrid architecture. The system is trained on multiple datasets, supports real-time chat via Gradio, and saves all models and metadata for reproducibility.
+This notebook implements a robust, emotion-aware chatbot system that combines emotional classification with response generation using google/flan-t5-Large and fine-tuned T5 Q&A model. The system is trained on multiple datasets, supports real-time chat via Gradio, and saves all models and metadata for reproducibility.
 
 ---
 
