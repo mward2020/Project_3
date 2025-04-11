@@ -60,7 +60,7 @@ Trained on mental health Q&A datasets from Kaggle and Hugging Face, preprocessed
 ## 🤖 Model Development
 
 ### Initial Model
-- DistilBERT baseline
+- Roberta baseline
 - Limitations in multi-emotion understanding
 
 ### Enhanced Model
