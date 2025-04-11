@@ -1,7 +1,5 @@
 # Requirements and Setup for the Mental Health Chatbot Project
 
-# Updated Requirements for the Mental Health Chatbot Project
-
 os
 glob
 json
@@ -15,6 +13,8 @@ warnings
 pathlib
 dataclasses
 pprint
+
+# External Libraries
 numpy>=1.24.4
 pandas>=2.1.4
 torch>=1.13.1
@@ -33,15 +33,17 @@ python-dotenv>=1.0.0
 pydub>=0.25.1
 speechrecognition>=3.10.1
 
-Notes:
+# Notes:
 
-If you're using a GPU-enabled setup, ensure that torch is installed with CUDA support (torch==1.13.1+cu117 etc. via pip or conda).
+# GPU-enabled setup: ensure torch is installed with CUDA support (e.g., torch==1.13.1+cu117).
 
-If you're running on CPU only, your current setup should work fine with the basic torch version.
+# CPU-only setup: standard torch version suffices.
 
-If using Windows, pydub may need ffmpeg installed and added to PATH.
+# Windows users: pydub requires ffmpeg installed and added to PATH.
 
-At least one dataset must be set to "True" to run the notebook (ds1 is the smallest):
+# Datasets:
+
+# At least one dataset must be set to "True" to run the notebook (ds1 is the smallest):
 
 DATASETS = {
     "ds1": (True,  "./data/ds1_transformed_mental_health_chatbot_dataset.csv",  "question", "answer"),
@@ -52,7 +54,9 @@ DATASETS = {
     "ds6": (False, "./data/ds6_mental_health_counseling.csv",                  "query",    "completion"),
 }
 
-Models are never overwritten. They are built/enhanced with every training run.
+# Model training:
 
-Comment out the following for each model to disable training:
-trainer.train()
+# Models are never overwritten. They are built/enhanced with every training run.
+
+# Comment out the following for each model to disable training:
+trainer.train().
