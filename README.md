@@ -96,7 +96,7 @@ This system combines emotional classification with response generation using a R
 - Saves all models/tokenizers with `.pt` metadata
 - Integrated with a Gradio UI for real-time chat
 
-Refer to [summary.txt](summary.txt) for the full breakdown.
+
 
 ---
 
