@@ -1,4 +1,4 @@
-# Requirements and Setup for the Mental Health Chatbot Project
+# Requirements and Setup for the Mental Health Chatbot Project 
 
 os
 glob
