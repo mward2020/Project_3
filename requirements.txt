@@ -59,4 +59,6 @@ DATASETS = {
 # Models are never overwritten. They are built/enhanced with every training run.
 
 # Comment out the following for each model to disable training:
-trainer.train().
+trainer_emo.train()
+resp_trainer.train()
+qa_trainer.train()

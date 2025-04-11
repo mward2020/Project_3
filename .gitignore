@@ -1153,3 +1153,16 @@ saved_models/flan_t5_response_generator/checkpoint-175/tokenizer_config.json
 saved_models/flan_t5_response_generator/checkpoint-175/tokenizer.json
 saved_models/flan_t5_response_generator/checkpoint-175/trainer_state.json
 saved_models/flan_t5_response_generator/checkpoint-175/training_args.bin
+logs/events.out.tfevents.1744335534.Zephyrus.32368.2
+saved_models/t5_qa/checkpoint-175/config.json
+saved_models/t5_qa/checkpoint-175/generation_config.json
+saved_models/t5_qa/checkpoint-175/optimizer.pt
+saved_models/t5_qa/checkpoint-175/pytorch_model.bin
+saved_models/t5_qa/checkpoint-175/rng_state.pth
+saved_models/t5_qa/checkpoint-175/scheduler.pt
+saved_models/t5_qa/checkpoint-175/special_tokens_map.json
+saved_models/t5_qa/checkpoint-175/spiece.model
+saved_models/t5_qa/checkpoint-175/tokenizer_config.json
+saved_models/t5_qa/checkpoint-175/tokenizer.json
+saved_models/t5_qa/checkpoint-175/trainer_state.json
+saved_models/t5_qa/checkpoint-175/training_args.bin
