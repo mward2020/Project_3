@@ -24,11 +24,13 @@ An AI-powered chatbot designed to support mental wellness by providing empatheti
 ## 🧠 Project Overview
 
 This repository contains the complete development of a Mental Health Chatbot. The chatbot provides real-time, accessible, and private support to individuals facing mental health challenges. It serves as a tool for emotional validation, self-help resources, and guidance toward professional care.
-This notebook implements a robust, emotion-aware chatbot system that combines emotional classification with response generation using a RoBERTa + T5 hybrid architecture. The system is trained on multiple datasets, supports real-time chat via Gradio, and saves all models and metadata for reproducibility.
+This notebook implements a robust, emotion-aware chatbot system that combines emotional classification with response generation using google/flan-t5-Large and fine-tuned T5 Q&A model. The system is trained on multiple datasets, supports real-time chat via Gradio, and saves all models and metadata for reproducibility.
 
 ---
 
 ## 🔧 Installation
+## Google Drive Link For code and log files
+- [Google Drive](https://drive.google.com/drive/folders/1gJPg_bdDVmHmnTruLpQJrnw_7xehI2vE)
 
 ```bash
 git clone https://github.com/your-repo/Mental-Health-Chatbot.git
@@ -58,12 +60,12 @@ Trained on mental health Q&A datasets from Kaggle and Hugging Face, preprocessed
 ## 🤖 Model Development
 
 ### Initial Model
-- DistilBERT baseline
+- Roberta baseline
 - Limitations in multi-emotion understanding
 
 ### Enhanced Model
 - RoBERTa (emotion classification)
-- Two T5 models (Chat-style & QA-style responses)
+- Two T5 models (google/flan-t5-large-fine-tuned T5 QA model)
 - BCEWithLogitsLoss + custom routing logic
 
 ---
@@ -94,7 +96,7 @@ This system combines emotional classification with response generation using a R
 - Saves all models/tokenizers with `.pt` metadata
 - Integrated with a Gradio UI for real-time chat
 
-Refer to [summary.txt](summary.txt) for the full breakdown.
+
 
 ---
 
