@@ -65,7 +65,7 @@ Trained on mental health Q&A datasets from Kaggle and Hugging Face, preprocessed
 
 ### Enhanced Model
 - RoBERTa (emotion classification)
-- Two T5 models (Chat-style & QA-style responses)
+- Two T5 models (google/flan-t5-large-fine-tuned T5 QA model)
 - BCEWithLogitsLoss + custom routing logic
 
 ---
